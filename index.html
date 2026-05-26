@@ -953,7 +953,8 @@ async function loadData(){
     // Si el usuario pega el link de "Publicar en la web", lo convertimos a CSV de cada hoja
     // Sheets API publish: gid=0 default; usamos gviz para múltiples pestañas
     const baseUrl = SHEET_CSV_URL;
-    // Cargar 4 pestañas si es posible (gviz endpoint)
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3CXlFJ6VzmewVPOMPzBwXv0l7ByvAjMgtzML22ugqqpcDIDBsPNyyavqqkEE3gHMyKijzinNSaZoI/pubhtml"
+  
     const sheetId = (baseUrl.match(/[-\w]{25,}/) || [])[0];
     if(sheetId){
       const fetchSheet = async (name) => {
