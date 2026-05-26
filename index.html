@@ -53,7 +53,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .3s}
 .nav-links a:hover{color:var(--gold)}
 .nav-links a:hover::after{width:100%}
-.btn-wa{background:var(--gold);color:var(--navy);font-weight:600;font-size:13px;padding:8px 28px;border-radius:100px;display:inline-flex;align-items:center;gap:8px;transition:all .25s ease;letter-spacing:.03em;}
+.btn-wa{background:var(--gold);color:var(--navy);font-weight:600;font-size:13px;padding:8px 28px;border-radius:100px;display:inline-flex;align-items:center;gap:8px;transition:all .25s ease;letter-spacing:.03em;justify-content: center; white-space: nowrap;flex-shrink: 0;}
 .btn-wa:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,118,.4)}
 .nav-burger{display:none;width:32px;height:22px;flex-direction:column;justify-content:space-between;cursor:pointer;z-index:120;position:relative;background:transparent;border:none;padding:0;}
 .nav-burger span{height:2px;background:#fff;width:100%;transition:all .35s cubic-bezier(.6,.05,.2,1);transform-origin:center;border-radius:2px;}
