@@ -11,14 +11,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <style>
 :root{
-  --navy:#1E3A2F;        /* verde bosque profundo (primario) */
-  --navy-2:#284A3C;      /* verde un tono más claro */
-  --navy-deep:#142922;   /* verde más oscuro */
-  --gold:#C9A876;        /* champagne mate */
-  --gold-light:#D4B98A;  /* champagne claro */
-  --gold-soft:#E5D2A8;   /* champagne suave */
-  --cream:#F4EDE0;       /* crema cálida */
-  --paper:#FAF6EC;       /* papel off-white */
+  --navy:#1E3A2F;
+  --navy-2:#284A3C;
+  --navy-deep:#142922;
+  --gold:#C9A876;
+  --gold-light:#D4B98A;
+  --gold-soft:#E5D2A8;
+  --cream:#F4EDE0;
+  --paper:#FAF6EC;
   --ink:#1A1A1A;
   --ink-soft:#3a3a3a;
   --muted:#8a8a8a;
@@ -31,52 +31,20 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family:var(--sans);
-  color:var(--ink);
-  background:var(--paper);
-  line-height:1.6;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
-
-/* ============ LOADER ============ */
-.loader{
-  position:fixed;inset:0;background:var(--navy);z-index:9999;
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;
-  transition:opacity .6s ease, visibility .6s ease;
-}
+.loader{position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .6s ease, visibility .6s ease;}
 .loader.hide{opacity:0;visibility:hidden}
-.loader-mark{
-  font-family:var(--serif);font-size:64px;font-weight:700;color:var(--gold);
-  letter-spacing:.08em;
-  animation:pulse 1.8s ease-in-out infinite;
-}
+.loader-mark{font-family:var(--serif);font-size:64px;font-weight:700;color:var(--gold);letter-spacing:.08em;animation:pulse 1.8s ease-in-out infinite;}
 .loader-bar{width:140px;height:1px;background:rgba(255,255,255,.15);overflow:hidden;position:relative}
 .loader-bar::after{content:"";position:absolute;inset:0;background:var(--gold);transform:translateX(-100%);animation:slide 1.4s ease-in-out infinite}
 @keyframes slide{0%{transform:translateX(-100%)}50%{transform:translateX(0)}100%{transform:translateX(100%)}}
 @keyframes pulse{0%,100%{opacity:.85}50%{opacity:1}}
-
-/* ============ NAV ============ */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:22px 5vw;display:flex;align-items:center;justify-content:space-between;
-  transition:all .35s ease;
-  background:transparent;
-}
-.nav.scrolled{
-  background:rgba(30,58,47,.92);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  padding:14px 5vw;
-  box-shadow:0 4px 30px rgba(0,0,0,.12);
-}
-.nav-logo{
-  font-family:var(--serif);font-weight:700;font-size:26px;color:#fff;letter-spacing:.04em;
-  display:flex;align-items:center;gap:10px;
-}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 5vw;display:flex;align-items:center;justify-content:space-between;transition:all .35s ease;background:transparent;}
+.nav.scrolled{background:rgba(30,58,47,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:14px 5vw;box-shadow:0 4px 30px rgba(0,0,0,.12);}
+.nav-logo{font-family:var(--serif);font-weight:700;font-size:26px;color:#fff;letter-spacing:.04em;display:flex;align-items:center;gap:10px;}
 .nav-logo .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;display:inline-block}
 .nav-logo small{font-family:var(--sans);font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;font-weight:500;margin-top:6px;display:block}
 .nav-logo-wrap{display:flex;flex-direction:column;line-height:1}
@@ -85,51 +53,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .3s}
 .nav-links a:hover{color:var(--gold)}
 .nav-links a:hover::after{width:100%}
-.btn-wa{
-  background:var(--gold);color:var(--navy);font-weight:600;font-size:13px;
-  padding:11px 22px;border-radius:100px;display:inline-flex;align-items:center;gap:8px;
-  transition:all .25s ease;letter-spacing:.03em;
-}
+.btn-wa{background:var(--gold);color:var(--navy);font-weight:600;font-size:13px;padding:11px 22px;border-radius:100px;display:inline-flex;align-items:center;gap:8px;transition:all .25s ease;letter-spacing:.03em;}
 .btn-wa:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,118,.4)}
-.nav-burger{
-  display:none;width:32px;height:22px;flex-direction:column;justify-content:space-between;
-  cursor:pointer;z-index:120;position:relative;background:transparent;border:none;padding:0;
-}
-.nav-burger span{
-  height:2px;background:#fff;width:100%;transition:all .35s cubic-bezier(.6,.05,.2,1);
-  transform-origin:center;border-radius:2px;
-}
+.nav-burger{display:none;width:32px;height:22px;flex-direction:column;justify-content:space-between;cursor:pointer;z-index:120;position:relative;background:transparent;border:none;padding:0;}
+.nav-burger span{height:2px;background:#fff;width:100%;transition:all .35s cubic-bezier(.6,.05,.2,1);transform-origin:center;border-radius:2px;}
 .nav-burger.open span:nth-child(1){transform:translateY(10px) rotate(45deg);background:var(--gold)}
 .nav-burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-burger.open span:nth-child(3){transform:translateY(-10px) rotate(-45deg);background:var(--gold)}
-
-/* MOBILE MENU OVERLAY */
-.mobile-menu{
-  position:fixed;inset:0;z-index:110;
-  background:linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;visibility:hidden;
-  transition:opacity .4s ease, visibility .4s ease;
-}
+.mobile-menu{position:fixed;inset:0;z-index:110;background:linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s ease, visibility .4s ease;}
 .mobile-menu.open{opacity:1;visibility:visible}
-.mobile-menu::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 40%, rgba(201,168,118,.12) 0%, transparent 60%);
-  pointer-events:none;
-}
-.mobile-menu-mark{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  opacity:.06;pointer-events:none;width:min(70vw,500px);
-}
-.mobile-links{
-  position:relative;z-index:2;display:flex;flex-direction:column;gap:8px;text-align:center;
-}
-.mobile-links a{
-  font-family:var(--serif);font-size:clamp(32px,8vw,52px);font-weight:500;color:#fff;
-  letter-spacing:-.01em;line-height:1.2;padding:8px 24px;
-  position:relative;transition:all .3s ease;
-  opacity:0;transform:translateY(20px);
-}
+.mobile-menu::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%, rgba(201,168,118,.12) 0%, transparent 60%);pointer-events:none;}
+.mobile-menu-mark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.06;pointer-events:none;width:min(70vw,500px);}
+.mobile-links{position:relative;z-index:2;display:flex;flex-direction:column;gap:8px;text-align:center;}
+.mobile-links a{font-family:var(--serif);font-size:clamp(32px,8vw,52px);font-weight:500;color:#fff;letter-spacing:-.01em;line-height:1.2;padding:8px 24px;position:relative;transition:all .3s ease;opacity:0;transform:translateY(20px);}
 .mobile-menu.open .mobile-links a{opacity:1;transform:translateY(0)}
 .mobile-menu.open .mobile-links a:nth-child(1){transition-delay:.15s}
 .mobile-menu.open .mobile-links a:nth-child(2){transition-delay:.22s}
@@ -137,405 +73,146 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .mobile-menu.open .mobile-links a:nth-child(4){transition-delay:.36s}
 .mobile-links a:hover,.mobile-links a:active{color:var(--gold)}
 .mobile-links a em{font-style:italic;color:var(--gold);font-weight:400}
-.mobile-menu-foot{
-  position:absolute;bottom:40px;left:0;right:0;
-  display:flex;justify-content:center;gap:20px;color:rgba(255,255,255,.5);font-size:12px;
-  letter-spacing:.2em;text-transform:uppercase;
-}
-
-/* ============ HERO ============ */
-.hero{
-  position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;
-  color:#fff;overflow:hidden;padding:120px 5vw 60px;
-}
-.hero-bg{
-  position:absolute;inset:0;z-index:0;
-  background:
-    radial-gradient(ellipse at 50% 35%, rgba(40,74,60,.4) 0%, rgba(20,41,34,.85) 55%, var(--navy-deep) 100%),
-    linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
-}
-.hero-mark{
-  position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;
-  opacity:.07;pointer-events:none;
-}
+.mobile-menu-foot{position:absolute;bottom:40px;left:0;right:0;display:flex;justify-content:center;gap:20px;color:rgba(255,255,255,.5);font-size:12px;letter-spacing:.2em;text-transform:uppercase;}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;color:#fff;overflow:hidden;padding:120px 5vw 60px;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 50% 35%, rgba(40,74,60,.4) 0%, rgba(20,41,34,.85) 55%, var(--navy-deep) 100%),linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);}
+.hero-mark{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;opacity:.07;pointer-events:none;}
 .hero-mark svg{width:min(70vw,720px);height:auto;animation:floaty 9s ease-in-out infinite}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.hero-glow{
-  position:absolute;width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,168,118,.18) 0%,transparent 65%);
-  top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;pointer-events:none;
-  filter:blur(40px);animation:glow 8s ease-in-out infinite alternate;
-}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,118,.18) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;pointer-events:none;filter:blur(40px);animation:glow 8s ease-in-out infinite alternate;}
 @keyframes glow{0%{opacity:.6;transform:translate(-50%,-50%) scale(1)}100%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
-.hero-grain{
-  position:absolute;inset:0;z-index:1;opacity:.05;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+.hero-grain{position:absolute;inset:0;z-index:1;opacity:.05;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .hero-content{position:relative;z-index:2;max-width:980px;text-align:center}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:12px;
-  font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);
-  margin-bottom:24px;font-weight:500;
-}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;font-weight:500;}
 .hero-eyebrow::before,.hero-eyebrow::after{content:"";height:1px;width:36px;background:var(--gold);opacity:.6}
-.hero h1{
-  font-family:var(--serif);font-weight:500;
-  font-size:clamp(38px,6vw,76px);line-height:1.08;letter-spacing:-.01em;
-  margin-bottom:26px;
-}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,6vw,76px);line-height:1.08;letter-spacing:-.01em;margin-bottom:26px;}
 .hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
-.hero p.lead{
-  font-size:clamp(15px,1.4vw,18px);color:rgba(255,255,255,.78);
-  max-width:620px;margin:0 auto 44px;font-weight:300;
-}
-.search-card{
-  background:rgba(255,255,255,.06);
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:80px;padding:8px 8px 8px 14px;
-  display:flex;align-items:center;gap:0;
-  max-width:940px;margin:0 auto;
-  box-shadow:0 25px 70px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);
-  position:relative;overflow:hidden;
-  transition:all .4s ease;
-}
-.search-card::before{
-  content:"";position:absolute;inset:0;border-radius:80px;
-  background:linear-gradient(120deg,transparent 30%,rgba(201,168,118,.08) 50%,transparent 70%);
-  background-size:200% 100%;background-position:200% 0;
-  animation:shimmer 6s ease-in-out infinite;pointer-events:none;
-}
+.hero p.lead{font-size:clamp(15px,1.4vw,18px);color:rgba(255,255,255,.78);max-width:620px;margin:0 auto 44px;font-weight:300;}
+.search-card{background:rgba(255,255,255,.06);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.14);border-radius:80px;padding:8px 8px 8px 14px;display:flex;align-items:center;gap:0;max-width:940px;margin:0 auto;box-shadow:0 25px 70px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);position:relative;overflow:hidden;transition:all .4s ease;}
+.search-card::before{content:"";position:absolute;inset:0;border-radius:80px;background:linear-gradient(120deg,transparent 30%,rgba(201,168,118,.08) 50%,transparent 70%);background-size:200% 100%;background-position:200% 0;animation:shimmer 6s ease-in-out infinite;pointer-events:none;}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .search-card:hover{border-color:rgba(201,168,118,.3);box-shadow:0 30px 90px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1)}
-
-.search-field{
-  flex:1;padding:14px 24px;text-align:left;position:relative;
-  cursor:pointer;transition:all .3s ease;
-  border-radius:60px;
-}
-.search-field::after{
-  content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
-  width:1px;height:32px;background:rgba(255,255,255,.14);
-}
+.search-field{flex:1;padding:14px 24px;text-align:left;position:relative;cursor:pointer;transition:all .3s ease;border-radius:60px;}
+.search-field::after{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:32px;background:rgba(255,255,255,.14);}
 .search-field:first-of-type::after{display:none}
 .search-field:hover{background:rgba(255,255,255,.05)}
 .search-field.focused{background:rgba(201,168,118,.12)}
-.search-field label{
-  display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--gold);font-weight:600;margin-bottom:4px;
-  transition:color .25s;
-}
-.search-field select,.search-field input{
-  width:100%;border:none;background:transparent;color:#fff;
-  font-family:inherit;font-size:14px;font-weight:500;outline:none;cursor:pointer;
-  -webkit-appearance:none;appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23C9A876' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right center;padding-right:20px;
-  letter-spacing:.01em;
-}
+.search-field label{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:4px;transition:color .25s;}
+.search-field select,.search-field input{width:100%;border:none;background:transparent;color:#fff;font-family:inherit;font-size:14px;font-weight:500;outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23C9A876' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center;padding-right:20px;letter-spacing:.01em;}
 .search-field select option{background:var(--navy-deep);color:#fff;padding:10px}
 .search-field input{background-image:none;padding-right:0;cursor:text}
 .search-field input::placeholder{color:rgba(255,255,255,.5)}
-
-.search-btn{
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  color:var(--navy);padding:0;border-radius:50%;width:62px;height:62px;
-  font-weight:600;font-size:14px;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .35s cubic-bezier(.2,.8,.2,1);
-  margin:0 0 0 10px;flex-shrink:0;
-  box-shadow:0 8px 24px rgba(201,168,118,.4);
-  position:relative;
-}
-.search-btn::before{
-  content:"";position:absolute;inset:-4px;border-radius:50%;
-  border:1px solid rgba(201,168,118,.3);
-  animation:ringPulse 2.4s ease-out infinite;
-}
+.search-btn{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy);padding:0;border-radius:50%;width:62px;height:62px;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .35s cubic-bezier(.2,.8,.2,1);margin:0 0 0 10px;flex-shrink:0;box-shadow:0 8px 24px rgba(201,168,118,.4);position:relative;}
+.search-btn::before{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(201,168,118,.3);animation:ringPulse 2.4s ease-out infinite;}
 @keyframes ringPulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.25);opacity:0}}
 .search-btn:hover{transform:rotate(90deg) scale(1.08);box-shadow:0 12px 36px rgba(201,168,118,.6)}
 .search-btn svg{width:20px;height:20px;transition:transform .3s}
-.hero-stats{
-  display:flex;justify-content:center;gap:48px;margin-top:68px;
-  font-size:13px;color:rgba(255,255,255,.7);
-}
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:68px;font-size:13px;color:rgba(255,255,255,.7);}
 .hero-stat strong{font-family:var(--serif);font-size:32px;color:var(--gold);font-weight:500;display:block;line-height:1}
 .hero-stat span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-top:6px;display:block}
-.scroll-cue{
-  position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:2;
-  color:rgba(255,255,255,.5);font-size:10px;letter-spacing:.3em;text-transform:uppercase;
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-}
+.scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.5);font-size:10px;letter-spacing:.3em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px;}
 .scroll-cue::after{content:"";width:1px;height:40px;background:var(--gold);animation:scroll-line 2s ease-in-out infinite}
 @keyframes scroll-line{0%,100%{height:10px;opacity:.4}50%{height:40px;opacity:1}}
-
-/* ============ SECTION COMMON ============ */
 section{padding:110px 5vw;position:relative}
 .section-head{max-width:760px;margin:0 auto 60px;text-align:center}
-.eyebrow{
-  display:inline-block;font-size:11px;letter-spacing:.4em;text-transform:uppercase;
-  color:var(--gold);font-weight:600;margin-bottom:18px;
-}
+.eyebrow{display:inline-block;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px;}
 .eyebrow::before{content:"— ";color:var(--gold)}
 .eyebrow::after{content:" —";color:var(--gold)}
-.section-head h2{
-  font-family:var(--serif);font-size:clamp(32px,4.2vw,52px);font-weight:500;line-height:1.1;
-  color:var(--navy);margin-bottom:16px;
-}
+.section-head h2{font-family:var(--serif);font-size:clamp(32px,4.2vw,52px);font-weight:500;line-height:1.1;color:var(--navy);margin-bottom:16px;}
 .section-head h2 em{font-style:italic;color:var(--gold);font-weight:400}
 .section-head p{color:var(--ink-soft);font-size:16px;font-weight:300;max-width:560px;margin:0 auto}
-
-/* ============ FILTERS ============ */
-.filters{
-  max-width:1280px;margin:0 auto 56px;
-  display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;
-  padding:0 8px;
-  border-bottom:1px solid var(--line);
-}
-.filter-tabs{
-  display:flex;flex-wrap:wrap;gap:0;position:relative;
-}
-.tab{
-  background:transparent;border:none;padding:18px 26px 22px;
-  font-size:13px;color:var(--muted);font-weight:500;letter-spacing:.08em;
-  text-transform:uppercase;font-family:inherit;
-  position:relative;transition:color .25s ease;cursor:pointer;
-}
+.filters{max-width:1280px;margin:0 auto 56px;display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;padding:0 8px;border-bottom:1px solid var(--line);}
+.filter-tabs{display:flex;flex-wrap:wrap;gap:0;position:relative;}
+.tab{background:transparent;border:none;padding:18px 26px 22px;font-size:13px;color:var(--muted);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-family:inherit;position:relative;transition:color .25s ease;cursor:pointer;}
 .tab:first-child{padding-left:0}
-.tab::after{
-  content:"";position:absolute;left:50%;bottom:-1px;width:0;height:2px;
-  background:var(--gold);transition:width .35s cubic-bezier(.2,.8,.2,1);
-  transform:translateX(-50%);
-}
+.tab::after{content:"";position:absolute;left:50%;bottom:-1px;width:0;height:2px;background:var(--gold);transition:width .35s cubic-bezier(.2,.8,.2,1);transform:translateX(-50%);}
 .tab:hover{color:var(--navy)}
 .tab:hover::after{width:24px;opacity:.5}
 .tab.active{color:var(--navy)}
 .tab.active::after{width:48px;opacity:1}
-.tab .count{
-  font-size:10px;color:var(--gold);margin-left:6px;font-weight:600;
-  font-family:var(--serif);font-style:italic;letter-spacing:0;
-}
+.tab .count{font-size:10px;color:var(--gold);margin-left:6px;font-weight:600;font-family:var(--serif);font-style:italic;letter-spacing:0;}
 .search-wrap{position:relative;display:flex;align-items:center;gap:14px}
-.search-inline{
-  background:transparent;border:none;border-bottom:1px solid var(--line);
-  padding:14px 0 14px 28px;width:260px;font-size:14px;font-family:inherit;
-  color:var(--navy);transition:all .25s;letter-spacing:.01em;
-}
+.search-inline{background:transparent;border:none;border-bottom:1px solid var(--line);padding:14px 0 14px 28px;width:260px;font-size:14px;font-family:inherit;color:var(--navy);transition:all .25s;letter-spacing:.01em;}
 .search-inline::placeholder{color:var(--muted);font-weight:300}
 .search-inline:focus{outline:none;border-color:var(--gold)}
-.search-wrap::before{
-  content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
-  width:16px;height:16px;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E3A2F' stroke-width='1.5'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat center/contain;
-  opacity:.6;
-}
-
-/* ============ GRID & CARD ============ */
-.grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));
-  gap:32px;max-width:1280px;margin:0 auto;
-}
-.card{
-  background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;
-  box-shadow:var(--shadow-sm);transition:all .4s cubic-bezier(.2,.8,.2,1);
-  position:relative;display:flex;flex-direction:column;
-  opacity:0;transform:translateY(30px);
-}
+.search-wrap::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:16px;height:16px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E3A2F' stroke-width='1.5'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat center/contain;opacity:.6;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:32px;max-width:1280px;margin:0 auto;}
+.card{background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:var(--shadow-sm);transition:all .4s cubic-bezier(.2,.8,.2,1);position:relative;display:flex;flex-direction:column;opacity:0;transform:translateY(30px);}
 .card.in{opacity:1;transform:translateY(0)}
 .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
 .card-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--cream)}
-.card-img img{
-  width:100%;height:100%;object-fit:cover;
-  transition:transform .9s cubic-bezier(.2,.8,.2,1);
-}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.8,.2,1);}
 .card:hover .card-img img{transform:scale(1.08)}
-.card-badge{
-  position:absolute;top:16px;left:16px;z-index:2;
-  background:rgba(255,255,255,.95);backdrop-filter:blur(8px);
-  padding:6px 14px;border-radius:100px;font-size:10px;
-  letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--navy);
-}
+.card-badge{position:absolute;top:16px;left:16px;z-index:2;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);padding:6px 14px;border-radius:100px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--navy);}
 .card-badge.gold{background:var(--gold);color:var(--navy)}
 .card-badge.sold{background:rgba(30,58,47,.92);color:#fff}
-.card-fav{
-  position:absolute;top:16px;right:16px;z-index:2;
-  width:36px;height:36px;border-radius:50%;
-  background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;
-  transition:all .2s;
-}
+.card-fav{position:absolute;top:16px;right:16px;z-index:2;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .card-fav:hover{background:#fff;transform:scale(1.08)}
-.card-price{
-  position:absolute;bottom:16px;left:16px;z-index:2;
-  background:linear-gradient(135deg,var(--navy),var(--navy-2));
-  color:#fff;padding:10px 18px;border-radius:12px;
-  font-family:var(--serif);font-weight:600;font-size:20px;
-  box-shadow:0 8px 24px rgba(30,58,47,.3);
-}
+.card-price{position:absolute;bottom:16px;left:16px;z-index:2;background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;padding:10px 18px;border-radius:12px;font-family:var(--serif);font-weight:600;font-size:20px;box-shadow:0 8px 24px rgba(30,58,47,.3);}
 .card-price small{font-family:var(--sans);font-weight:400;font-size:11px;opacity:.8;margin-left:4px}
 .card-body{padding:24px 24px 26px;flex:1;display:flex;flex-direction:column}
-.card-loc{
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
-  font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px;
-}
+.card-loc{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
 .card-loc::before{content:"";width:18px;height:1px;background:var(--gold)}
-.card-title{
-  font-family:var(--serif);font-size:22px;font-weight:500;color:var(--navy);
-  line-height:1.25;margin-bottom:14px;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-}
-.card-specs{
-  display:flex;gap:18px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  margin-bottom:18px;font-size:13px;color:var(--ink-soft);
-}
+.card-title{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--navy);line-height:1.25;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.card-specs{display:flex;gap:18px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:18px;font-size:13px;color:var(--ink-soft);}
 .spec{display:flex;align-items:center;gap:6px}
 .spec svg{width:16px;height:16px;color:var(--gold)}
-.card-cta{
-  display:flex;justify-content:space-between;align-items:center;margin-top:auto;
-  font-size:13px;color:var(--navy);font-weight:600;letter-spacing:.04em;
-}
+.card-cta{display:flex;justify-content:space-between;align-items:center;margin-top:auto;font-size:13px;color:var(--navy);font-weight:600;letter-spacing:.04em;}
 .card-cta span{display:flex;align-items:center;gap:6px;transition:gap .25s}
 .card:hover .card-cta span{gap:12px}
-.card-tag{
-  font-size:11px;color:var(--muted);background:var(--cream);
-  padding:4px 10px;border-radius:6px;font-weight:500;
-}
-
-/* ============ EMPTY ============ */
-.empty{
-  text-align:center;padding:80px 20px;color:var(--muted);
-  font-family:var(--serif);font-size:22px;font-style:italic;
-}
-
-/* ============ ABOUT ============ */
-.about{
-  background:var(--navy);color:#fff;
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-  max-width:none;padding-left:8vw;padding-right:8vw;
-}
-.about-img{
-  aspect-ratio:4/5;border-radius:18px;overflow:hidden;position:relative;
-  background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80') center/cover;
-}
-.about-img::after{
-  content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(30,58,47,.6));
-}
+.card-tag{font-size:11px;color:var(--muted);background:var(--cream);padding:4px 10px;border-radius:6px;font-weight:500;}
+.empty{text-align:center;padding:80px 20px;color:var(--muted);font-family:var(--serif);font-size:22px;font-style:italic;}
+.about{background:var(--navy);color:#fff;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:none;padding-left:8vw;padding-right:8vw;}
+.about-img{aspect-ratio:4/5;border-radius:18px;overflow:hidden;position:relative;background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80') center/cover;}
+.about-img::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(30,58,47,.6));}
 .about-text .eyebrow{color:var(--gold)}
-.about-text h2{
-  font-family:var(--serif);font-size:clamp(30px,3.8vw,46px);font-weight:500;
-  line-height:1.15;margin-bottom:24px;
-}
+.about-text h2{font-family:var(--serif);font-size:clamp(30px,3.8vw,46px);font-weight:500;line-height:1.15;margin-bottom:24px;}
 .about-text h2 em{color:var(--gold);font-style:italic;font-weight:400}
 .about-text p{color:rgba(255,255,255,.75);font-weight:300;font-size:16px;margin-bottom:18px}
 .about-features{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
 .feature{padding:20px 0;border-top:1px solid rgba(255,255,255,.12)}
-.feature strong{
-  font-family:var(--serif);font-size:32px;color:var(--gold);font-weight:500;display:block;line-height:1;
-}
+.feature strong{font-family:var(--serif);font-size:32px;color:var(--gold);font-weight:500;display:block;line-height:1;}
 .feature span{font-size:13px;color:rgba(255,255,255,.65);margin-top:6px;display:block}
-
-/* ============ CONTACT ============ */
-.contact{
-  background:var(--navy-deep);color:#fff;
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;
-}
-.contact-info h2{
-  font-family:var(--serif);font-size:clamp(30px,3.8vw,46px);font-weight:500;
-  margin-bottom:18px;line-height:1.15;
-}
+.contact{background:var(--navy-deep);color:#fff;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.contact-info h2{font-family:var(--serif);font-size:clamp(30px,3.8vw,46px);font-weight:500;margin-bottom:18px;line-height:1.15;}
 .contact-info h2 em{color:var(--gold);font-style:italic;font-weight:400}
 .contact-info p{color:rgba(255,255,255,.7);font-weight:300;margin-bottom:36px;font-size:16px}
 .contact-list{list-style:none;display:flex;flex-direction:column;gap:18px}
 .contact-list li{display:flex;align-items:center;gap:18px;font-size:14px}
-.contact-list .ico{
-  width:42px;height:42px;border-radius:50%;background:rgba(201,168,118,.12);
-  display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;
-}
+.contact-list .ico{width:42px;height:42px;border-radius:50%;background:rgba(201,168,118,.12);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;}
 .contact-list .ico svg{width:18px;height:18px}
-.contact-list .lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:2px}
-.contact-form{
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;padding:40px;backdrop-filter:blur(10px);
-}
+.contact-list .lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:2px;}
+.contact-form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:40px;backdrop-filter:blur(10px);}
 .contact-form h3{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:6px}
 .contact-form p{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:28px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.input,.textarea{
-  width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  padding:14px 16px;border-radius:10px;color:#fff;font-family:inherit;font-size:14px;
-  transition:all .2s;
-}
+.input,.textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:14px 16px;border-radius:10px;color:#fff;font-family:inherit;font-size:14px;transition:all .2s;}
 .input:focus,.textarea:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.08)}
 .textarea{min-height:110px;resize:vertical;margin-bottom:20px}
-.form-btn{
-  width:100%;background:var(--gold);color:var(--navy);
-  padding:16px;border-radius:10px;font-weight:600;font-size:14px;letter-spacing:.05em;
-  transition:all .2s;
-}
+.form-btn{width:100%;background:var(--gold);color:var(--navy);padding:16px;border-radius:10px;font-weight:600;font-size:14px;letter-spacing:.05em;transition:all .2s;}
 .form-btn:hover{background:var(--gold-light);transform:translateY(-1px)}
-
-/* ============ FOOTER ============ */
-footer{
-  background:var(--navy-deep);color:rgba(255,255,255,.5);
-  padding:40px 5vw;text-align:center;font-size:12px;letter-spacing:.05em;
-  border-top:1px solid rgba(255,255,255,.06);
-}
+footer{background:var(--navy-deep);color:rgba(255,255,255,.5);padding:40px 5vw;text-align:center;font-size:12px;letter-spacing:.05em;border-top:1px solid rgba(255,255,255,.06);}
 footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
-
-/* ============ FLOATING WHATSAPP ============ */
-.fab{
-  position:fixed;bottom:28px;right:28px;z-index:90;
-  width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 10px 30px rgba(37,211,102,.4);
-  transition:all .25s;
-}
+.fab{position:fixed;bottom:28px;right:28px;z-index:90;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(37,211,102,.4);transition:all .25s;}
 .fab:hover{transform:scale(1.08);box-shadow:0 14px 36px rgba(37,211,102,.55)}
 .fab svg{width:30px;height:30px}
-
-/* ============ MODAL ============ */
-.modal{
-  position:fixed;inset:0;z-index:200;background:rgba(20,41,34,.85);
-  backdrop-filter:blur(12px);
-  display:flex;align-items:center;justify-content:center;padding:5vh 5vw;
-  opacity:0;visibility:hidden;transition:all .35s ease;
-}
+.modal{position:fixed;inset:0;z-index:200;background:rgba(20,41,34,.85);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:5vh 5vw;opacity:0;visibility:hidden;transition:all .35s ease;}
 .modal.open{opacity:1;visibility:visible}
-.modal-content{
-  background:var(--paper);border-radius:20px;max-width:1200px;width:100%;
-  max-height:90vh;overflow-y:auto;position:relative;
-  transform:scale(.96);transition:transform .4s cubic-bezier(.2,.8,.2,1);
-  box-shadow:var(--shadow-lg);
-}
+.modal-content{background:var(--paper);border-radius:20px;max-width:1200px;width:100%;max-height:90vh;overflow-y:auto;position:relative;transform:scale(.96);transition:transform .4s cubic-bezier(.2,.8,.2,1);box-shadow:var(--shadow-lg);}
 .modal.open .modal-content{transform:scale(1)}
-.modal-close{
-  position:absolute;top:20px;right:20px;z-index:10;
-  width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.95);
-  display:flex;align-items:center;justify-content:center;color:var(--navy);
-  box-shadow:var(--shadow-sm);transition:all .2s;
-}
+.modal-close{position:absolute;top:20px;right:20px;z-index:10;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;color:var(--navy);box-shadow:var(--shadow-sm);transition:all .2s;}
 .modal-close:hover{background:#fff;transform:rotate(90deg)}
 .modal-gallery{position:relative;aspect-ratio:16/9;background:var(--navy);overflow:hidden}
 .gallery-main{position:relative;width:100%;height:100%}
 .gallery-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease}
 .gallery-slide.active{opacity:1}
 .gallery-slide img{width:100%;height:100%;object-fit:cover}
-.gallery-nav{
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.92);
-  display:flex;align-items:center;justify-content:center;color:var(--navy);
-  transition:all .2s;z-index:3;
-}
+.gallery-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;color:var(--navy);transition:all .2s;z-index:3;}
 .gallery-nav:hover{background:var(--gold)}
 .gallery-nav.prev{left:20px}
 .gallery-nav.next{right:20px}
-.gallery-thumbs{
-  display:flex;gap:8px;padding:14px 20px;background:#fff;overflow-x:auto;
-  border-bottom:1px solid var(--line);
-}
-.thumb{
-  width:90px;aspect-ratio:4/3;border-radius:8px;overflow:hidden;cursor:pointer;
-  opacity:.55;transition:all .2s;flex-shrink:0;border:2px solid transparent;
-}
+.gallery-thumbs{display:flex;gap:8px;padding:14px 20px;background:#fff;overflow-x:auto;border-bottom:1px solid var(--line);}
+.thumb{width:90px;aspect-ratio:4/3;border-radius:8px;overflow:hidden;cursor:pointer;opacity:.55;transition:all .2s;flex-shrink:0;border:2px solid transparent;}
 .thumb.active{opacity:1;border-color:var(--gold)}
 .thumb:hover{opacity:1}
 .thumb img{width:100%;height:100%;object-fit:cover}
@@ -543,16 +220,9 @@ footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
 .modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;margin-bottom:28px;flex-wrap:wrap}
 .modal-head .loc{font-size:12px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:10px}
 .modal-head h2{font-family:var(--serif);font-size:clamp(26px,3vw,38px);font-weight:500;color:var(--navy);line-height:1.15}
-.modal-head .price{
-  font-family:var(--serif);font-size:34px;color:var(--navy);font-weight:600;
-  white-space:nowrap;
-}
+.modal-head .price{font-family:var(--serif);font-size:34px;color:var(--navy);font-weight:600;white-space:nowrap;}
 .modal-head .price small{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);margin-left:6px}
-.modal-specs{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:0;background:#fff;border-radius:14px;overflow:hidden;
-  border:1px solid var(--line);margin-bottom:32px;
-}
+.modal-specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:0;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line);margin-bottom:32px;}
 .mspec{padding:20px;text-align:center;border-right:1px solid var(--line)}
 .mspec:last-child{border-right:none}
 .mspec strong{font-family:var(--serif);font-size:24px;color:var(--navy);font-weight:600;display:block;line-height:1}
@@ -561,20 +231,10 @@ footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
 .modal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
 .mtag{background:var(--cream);color:var(--navy);padding:8px 16px;border-radius:100px;font-size:12px;font-weight:500}
 .modal-actions{display:flex;gap:14px;flex-wrap:wrap}
-.btn-primary{
-  background:var(--navy);color:#fff;padding:16px 32px;border-radius:12px;
-  font-weight:600;font-size:14px;letter-spacing:.04em;
-  display:inline-flex;align-items:center;gap:10px;transition:all .2s;
-}
+.btn-primary{background:var(--navy);color:#fff;padding:16px 32px;border-radius:12px;font-weight:600;font-size:14px;letter-spacing:.04em;display:inline-flex;align-items:center;gap:10px;transition:all .2s;}
 .btn-primary:hover{background:var(--gold);color:var(--navy)}
-.btn-secondary{
-  background:transparent;color:var(--navy);padding:16px 32px;border-radius:12px;
-  font-weight:600;font-size:14px;letter-spacing:.04em;border:1px solid var(--navy);
-  display:inline-flex;align-items:center;gap:10px;transition:all .2s;
-}
+.btn-secondary{background:transparent;color:var(--navy);padding:16px 32px;border-radius:12px;font-weight:600;font-size:14px;letter-spacing:.04em;border:1px solid var(--navy);display:inline-flex;align-items:center;gap:10px;transition:all .2s;}
 .btn-secondary:hover{background:var(--navy);color:#fff}
-
-/* ============ RESPONSIVE ============ */
 @media (max-width:920px){
   .nav-links a{display:none}
   .nav-burger{display:flex}
@@ -592,8 +252,6 @@ footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
   .filters{flex-direction:column;align-items:stretch}
   .search-inline{width:100%}
 }
-
-/* No scrollbar styling */
 .gallery-thumbs::-webkit-scrollbar{height:4px}
 .gallery-thumbs::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px}
 .modal-content::-webkit-scrollbar{width:8px}
@@ -602,14 +260,10 @@ footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
 </style>
 </head>
 <body>
-
-<!-- LOADER -->
 <div class="loader" id="loader">
   <div class="loader-mark">FFS</div>
   <div class="loader-bar"></div>
 </div>
-
-<!-- NAV -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">
     <div class="nav-logo-wrap">
@@ -628,8 +282,6 @@ footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
   </div>
   <button class="nav-burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
-
-<!-- MOBILE MENU OVERLAY -->
 <div class="mobile-menu" id="mobileMenu">
   <svg class="mobile-menu-mark" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" fill="none">
     <g stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -648,24 +300,18 @@ footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
   </nav>
   <div class="mobile-menu-foot">FFS · PROPIEDADES</div>
 </div>
-
-<!-- HERO -->
 <header class="hero" id="inicio">
   <div class="hero-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-mark">
-    <!-- Logo FFS recreado en SVG -->
     <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" fill="none">
-      <!-- Edificios -->
       <g stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M225 290 L225 175 L260 145 L260 290 Z"/>
         <path d="M260 145 L260 95 L305 60 L305 290"/>
         <path d="M305 60 L305 130 L345 105 L345 290"/>
         <path d="M345 290 L345 175 L380 200 L380 290"/>
       </g>
-      <!-- Puerta dorada central -->
       <path d="M285 290 L285 180 L320 150 L320 290 Z" stroke="#C9A876" stroke-width="3" stroke-linejoin="round"/>
-      <!-- Base curva -->
       <path d="M180 305 Q300 320 420 305" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round"/>
     </svg>
   </div>
@@ -699,8 +345,6 @@ footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
   </div>
   <div class="scroll-cue">Scroll</div>
 </header>
-
-<!-- PROPIEDADES -->
 <section id="propiedades">
   <div class="section-head">
     <div class="eyebrow">Nuestro catálogo</div>
@@ -720,8 +364,6 @@ footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
   </div>
   <div class="grid" id="grid"></div>
 </section>
-
-<!-- NOSOTROS -->
 <section id="nosotros" class="about">
   <div class="about-img"></div>
   <div class="about-text">
@@ -737,8 +379,6 @@ footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
     </div>
   </div>
 </section>
-
-<!-- CONTACTO -->
 <section id="contacto" class="contact">
   <div class="contact-info">
     <div class="eyebrow">Hablemos</div>
@@ -775,17 +415,12 @@ footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
     <button class="form-btn" type="submit">Enviar consulta</button>
   </form>
 </section>
-
 <footer>
   © 2026 <strong>FFS PROPIEDADES</strong> · Todas las direcciones, una sola dirección.
 </footer>
-
-<!-- Floating WA -->
 <a class="fab" id="fabWa" target="_blank" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
-
-<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="modal-content" id="modalContent">
     <button class="modal-close" id="modalClose" aria-label="Cerrar">
@@ -804,120 +439,26 @@ footer strong{color:var(--gold);font-weight:600;letter-spacing:.1em}
     <div class="modal-body" id="modalBody"></div>
   </div>
 </div>
-
 <script>
 /* =========================================================
-   CONFIGURACIÓN · pegá acá tu link del Google Sheet publicado
-   Archivo > Compartir > Publicar en la web > CSV
+   CONFIGURACIÓN · Links CSV de cada hoja publicada en Google Sheets
+   Archivo > Compartir > Publicar en la web > elegir hoja > CSV
    ========================================================= */
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3CXlFJ6VzmewVPOMPzBwXv0l7ByvAjMgtzML22ugqqpcDIDBsPNyyavqqkEE3gHMyKijzinNSaZoI/pub?gid=1410218435&single=true&output=csv"; // <-- pegá tu URL acá (vacío = usa datos demo)
+const SHEET_PROPIEDADES_URL  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3CXlFJ6VzmewVPOMPzBwXv0l7ByvAjMgtzML22ugqqpcDIDBsPNyyavqqkEE3gHMyKijzinNSaZoI/pub?gid=1410218435&single=true&output=csv";
+const SHEET_CONTACTO_URL     = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3CXlFJ6VzmewVPOMPzBwXv0l7ByvAjMgtzML22ugqqpcDIDBsPNyyavqqkEE3gHMyKijzinNSaZoI/pub?gid=308734230&single=true&output=csv";
+const SHEET_SOCIALPROOF_URL  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT3CXlFJ6VzmewVPOMPzBwXv0l7ByvAjMgtzML22ugqqpcDIDBsPNyyavqqkEE3gHMyKijzinNSaZoI/pub?gid=1008859185&single=true&output=csv";
 
-/* === DATOS DEMO (se usan si no hay URL) === */
+/* === DATOS DEMO (se usan si el Sheet no responde) === */
 const DEMO = {
   propiedades: [
-    {ID:1,Titulo:"Casa moderna con pileta",Operacion:"Venta",Tipo:"Casa",Ubicacion:"Beccar, San Isidro",Zona:"San Isidro",Precio:285000,Moneda:"USD",Expensas:0,M2_Cubiertos:220,M2_Totales:380,Ambientes:5,Dormitorios:3,Banos:3,Cocheras:2,Antiguedad:"5 años",Descripcion:"Casa luminosa de 3 dormitorios con pileta climatizada, parrilla y quincho. Excelente estado, lista para mudarse.",Tags:"Pileta, Parrilla, Cochera, A estrenar",Estado:"Disponible",Destacada:"SI",
-      Foto_Portada:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1600573472556-e636c2acda88?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Beccar+San+Isidro",WhatsApp:"5491155551234"},
-    {ID:2,Titulo:"Departamento 2 amb con balcón al frente",Operacion:"Alquiler",Tipo:"Departamento",Ubicacion:"Palermo Soho, CABA",Zona:"Palermo",Precio:650000,Moneda:"ARS",Expensas:85000,M2_Cubiertos:48,M2_Totales:52,Ambientes:2,Dormitorios:1,Banos:1,Cocheras:0,Antiguedad:"10 años",Descripcion:"Departamento de 2 ambientes en Palermo Soho. Balcón al frente, cocina integrada, edificio con amenities.",Tags:"Balcón, Amenities, Luminoso",Estado:"Disponible",Destacada:"SI",
-      Foto_Portada:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Palermo+CABA",WhatsApp:"5491155551234"},
-    {ID:3,Titulo:"Casa familiar en barrio cerrado",Operacion:"Venta",Tipo:"Casa",Ubicacion:"Nordelta, Tigre",Zona:"Tigre",Precio:520000,Moneda:"USD",Expensas:0,M2_Cubiertos:320,M2_Totales:600,Ambientes:6,Dormitorios:4,Banos:4,Cocheras:2,Antiguedad:"8 años",Descripcion:"Imponente casa en barrio cerrado con seguridad 24hs. Pileta, quincho con parrilla, parque, doble cochera.",Tags:"Barrio cerrado, Pileta, Parque, Seguridad 24hs",Estado:"Disponible",Destacada:"SI",
-      Foto_Portada:"https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1600566753086-00f18fe6ba68?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Nordelta+Tigre",WhatsApp:"5491155551234"},
-    {ID:4,Titulo:"Monoambiente premium en Recoleta",Operacion:"Alquiler Temporario",Tipo:"Departamento",Ubicacion:"Recoleta, CABA",Zona:"Recoleta",Precio:55,Moneda:"USD",Expensas:0,M2_Cubiertos:38,M2_Totales:38,Ambientes:1,Dormitorios:0,Banos:1,Cocheras:0,Antiguedad:"A estrenar",Descripcion:"Monoambiente totalmente equipado en pleno corazón de Recoleta. Wifi, smart TV, cocina full. Edificio con piscina.",Tags:"A estrenar, Equipado, Pileta",Estado:"Disponible",Destacada:"NO",
-      Foto_Portada:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Recoleta+CABA",WhatsApp:"5491155551234"},
-    {ID:5,Titulo:"PH con terraza propia y parrilla",Operacion:"Venta",Tipo:"PH",Ubicacion:"Caballito, CABA",Zona:"Caballito",Precio:185000,Moneda:"USD",Expensas:0,M2_Cubiertos:95,M2_Totales:110,Ambientes:3,Dormitorios:2,Banos:1,Cocheras:0,Antiguedad:"30 años",Descripcion:"PH al frente con terraza propia y parrilla. Excelente ubicación, a metros del subte línea A.",Tags:"Terraza, Parrilla, Sin expensas",Estado:"Disponible",Destacada:"NO",
-      Foto_Portada:"https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1600573472556-e636c2acda88?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Caballito+CABA",WhatsApp:"5491155551234"},
-    {ID:6,Titulo:"Local comercial sobre avenida",Operacion:"Alquiler",Tipo:"Local",Ubicacion:"Av. Cabildo, Belgrano",Zona:"Belgrano",Precio:850000,Moneda:"ARS",Expensas:120000,M2_Cubiertos:80,M2_Totales:80,Ambientes:1,Dormitorios:0,Banos:1,Cocheras:0,Antiguedad:"20 años",Descripcion:"Excelente local sobre Av. Cabildo. Gran vidriera, depósito, baño. Ideal gastronomía o retail.",Tags:"Esquina, Vidriera, Depósito",Estado:"Disponible",Destacada:"NO",
-      Foto_Portada:"https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1604014237744-3d96f4d8c34c?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1604014237256-d44a4f93bca8?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Cabildo+Belgrano",WhatsApp:"5491155551234"},
-    {ID:7,Titulo:"Departamento 3 amb con vista al río",Operacion:"Venta",Tipo:"Departamento",Ubicacion:"Núñez, CABA",Zona:"Núñez",Precio:245000,Moneda:"USD",Expensas:78000,M2_Cubiertos:85,M2_Totales:92,Ambientes:3,Dormitorios:2,Banos:2,Cocheras:1,Antiguedad:"6 años",Descripcion:"Hermoso 3 ambientes con vista despejada al río. Balcón aterrazado, suite principal, edificio con SUM y gym.",Tags:"Vista al río, Cochera, Amenities, Suite",Estado:"Disponible",Destacada:"SI",
-      Foto_Portada:"https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1600121848594-d8644e57abab?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1600573472591-ee5d3aae5b25?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Núñez+CABA",WhatsApp:"5491155551234"},
-    {ID:8,Titulo:"Casa estilo francés a refaccionar",Operacion:"Venta",Tipo:"Casa",Ubicacion:"Belgrano R, CABA",Zona:"Belgrano",Precio:420000,Moneda:"USD",Expensas:0,M2_Cubiertos:240,M2_Totales:310,Ambientes:6,Dormitorios:4,Banos:3,Cocheras:2,Antiguedad:"80 años",Descripcion:"Casa de estilo francés con jardín, piso de pinotea original. Excelente proyecto a refaccionar a gusto.",Tags:"Estilo, Jardín, A refaccionar, Lote propio",Estado:"Disponible",Destacada:"NO",
-      Foto_Portada:"https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1600573472556-e636c2acda88?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Belgrano+R+CABA",WhatsApp:"5491155551234"},
-    {ID:9,Titulo:"Loft de diseño con doble altura",Operacion:"Alquiler",Tipo:"Departamento",Ubicacion:"Villa Crespo, CABA",Zona:"Villa Crespo",Precio:780000,Moneda:"ARS",Expensas:95000,M2_Cubiertos:75,M2_Totales:80,Ambientes:2,Dormitorios:1,Banos:1,Cocheras:1,Antiguedad:"3 años",Descripcion:"Loft moderno con doble altura, terminaciones premium. Cochera fija, edificio con rooftop y pileta.",Tags:"Loft, Doble altura, Pileta, Rooftop",Estado:"Disponible",Destacada:"SI",
-      Foto_Portada:"https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1565182999561-18d7dc61c393?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1502672023488-cda318ecaa6c?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Villa+Crespo+CABA",WhatsApp:"5491155551234"},
-    {ID:10,Titulo:"Casa con parque en Olivos",Operacion:"Venta",Tipo:"Casa",Ubicacion:"Olivos, Vicente López",Zona:"Vicente López",Precio:680000,Moneda:"USD",Expensas:0,M2_Cubiertos:340,M2_Totales:520,Ambientes:7,Dormitorios:5,Banos:4,Cocheras:3,Antiguedad:"12 años",Descripcion:"Casa de categoría con parque arbolado, pileta in-out y quincho. Suite principal con vestidor. A pasos del río.",Tags:"Suite, Pileta in-out, Parque, Cerca del río",Estado:"Disponible",Destacada:"SI",
-      Foto_Portada:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1600566753086-00f18fe6ba68?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Olivos+Vicente+López",WhatsApp:"5491155551234"},
-    {ID:11,Titulo:"Studio luminoso a estrenar",Operacion:"Alquiler",Tipo:"Departamento",Ubicacion:"Colegiales, CABA",Zona:"Colegiales",Precio:480000,Moneda:"ARS",Expensas:65000,M2_Cubiertos:42,M2_Totales:45,Ambientes:1,Dormitorios:1,Banos:1,Cocheras:0,Antiguedad:"A estrenar",Descripcion:"Studio amplio con kitchenette integrada, gran ventanal y terminaciones de primera. Edificio sustentable.",Tags:"A estrenar, Sustentable, Luminoso",Estado:"Disponible",Destacada:"NO",
-      Foto_Portada:"https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Colegiales+CABA",WhatsApp:"5491155551234"},
-    {ID:12,Titulo:"Oficina premium en torre corporativa",Operacion:"Alquiler",Tipo:"Oficina",Ubicacion:"Puerto Madero, CABA",Zona:"Puerto Madero",Precio:1800000,Moneda:"ARS",Expensas:280000,M2_Cubiertos:140,M2_Totales:140,Ambientes:4,Dormitorios:0,Banos:2,Cocheras:2,Antiguedad:"15 años",Descripcion:"Oficina en torre AAA con vista panorámica. 4 privados, sala de reuniones, kitchenette, 2 cocheras fijas.",Tags:"Vista panorámica, AAA, Cocheras, Categoría",Estado:"Disponible",Destacada:"NO",
-      Foto_Portada:"https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600",
-      Foto_1:"https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600",
-      Foto_2:"https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=1600",
-      Foto_3:"https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=1600",
-      Foto_4:"https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1600",
-      Foto_5:"https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=1600",
-      Link_Maps:"https://maps.google.com/?q=Puerto+Madero+CABA",WhatsApp:"5491155551234"}
+    {ID:1,Titulo:"Casa moderna con pileta",Operacion:"Venta",Tipo:"Casa",Ubicacion:"Beccar, San Isidro",Zona:"San Isidro",Precio:285000,Moneda:"USD",Expensas:0,M2_Cubiertos:220,M2_Totales:380,Ambientes:5,Dormitorios:3,Banos:3,Cocheras:2,Antiguedad:"5 años",Descripcion:"Casa luminosa de 3 dormitorios con pileta climatizada, parrilla y quincho. Excelente estado, lista para mudarse.",Tags:"Pileta, Parrilla, Cochera, A estrenar",Estado:"Disponible",Destacada:"SI",Foto_Portada:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600",Foto_1:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600",Foto_2:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600",Foto_3:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600",Foto_4:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600",Foto_5:"https://images.unsplash.com/photo-1600573472556-e636c2acda88?w=1600",Link_Maps:"https://maps.google.com/?q=Beccar+San+Isidro",WhatsApp:"5491155551234"},
+    {ID:2,Titulo:"Departamento 2 amb con balcón al frente",Operacion:"Alquiler",Tipo:"Departamento",Ubicacion:"Palermo Soho, CABA",Zona:"Palermo",Precio:650000,Moneda:"ARS",Expensas:85000,M2_Cubiertos:48,M2_Totales:52,Ambientes:2,Dormitorios:1,Banos:1,Cocheras:0,Antiguedad:"10 años",Descripcion:"Departamento de 2 ambientes en Palermo Soho. Balcón al frente, cocina integrada, edificio con amenities.",Tags:"Balcón, Amenities, Luminoso",Estado:"Disponible",Destacada:"SI",Foto_Portada:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1600",Foto_1:"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600",Foto_2:"https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1600",Foto_3:"https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1600",Foto_4:"https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1600",Foto_5:"https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1600",Link_Maps:"https://maps.google.com/?q=Palermo+CABA",WhatsApp:"5491155551234"}
   ],
   testimonios:[
     {Nombre:"María González",Operacion:"Compró en Beccar",Testimonio:"Nos acompañaron de principio a fin. Encontramos la casa de nuestros sueños en tiempo récord."},
-    {Nombre:"Juan Pérez",Operacion:"Alquiló en Palermo",Testimonio:"Profesionalismo total. Cero vueltas, cero burocracia. Recomiendo FFS 100%."},
-    {Nombre:"Laura Méndez",Operacion:"Vendió en Caballito",Testimonio:"Vendieron mi PH en menos de un mes. El trato fue impecable."}
+    {Nombre:"Juan Pérez",Operacion:"Alquiló en Palermo",Testimonio:"Profesionalismo total. Cero vueltas, cero burocracia. Recomiendo FFS 100%."}
   ],
-  contacto:{WhatsApp:"5491155551234",Email:"contacto@ffspropiedades.com",Telefono:"+54 11 5555-1234",Instagram:"@ffs.propiedades",Instagram_URL:"https://instagram.com/ffs.propiedades",Direccion:"Av. Libertador 1234, CABA",Horario:"Lun a Vie 9:00 - 18:00"}
+  contacto:{WhatsApp:"5491155551234",Email:"contacto@ffspropiedades.com",Telefono:"+54 11 5555-1234",Instagram:"@ffs.propiedades",Instagram_URL:"https://instagram.com/ffs.propiedades",Direccion:"Av. Libertador 1234, CABA"}
 };
 
 /* ============ ESTADO ============ */
@@ -929,7 +470,6 @@ let currentSlide = 0;
 /* ============ UTILS ============ */
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
-
 function fmtPrice(p, moneda){
   const n = Number(p);
   if(!n || isNaN(n)) return "Consultar";
@@ -945,48 +485,39 @@ function tagList(p){
 
 /* ============ LOAD DATA ============ */
 async function loadData(){
-  if(!SHEET_CSV_URL){
-    DATA = DEMO;
-    return;
-  }
-  try{
-    // Si el usuario pega el link de "Publicar en la web", lo convertimos a CSV de cada hoja
-    // Sheets API publish: gid=0 default; usamos gviz para múltiples pestañas
-    const baseUrl = SHEET_CSV_URL;  
-    const sheetId = (baseUrl.match(/[-\w]{25,}/) || [])[0];
-    if(sheetId){
-      const fetchSheet = async (name) => {
-        const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(name)}`;
-        const r = await fetch(url);
-        if(!r.ok) throw new Error(name);
-        const text = await r.text();
-        return Papa.parse(text, {header:true, skipEmptyLines:true}).data;
-      };
-      const [props, tests, contRows] = await Promise.all([
-        fetchSheet("Propiedades").catch(()=>[]),
-        fetchSheet("SocialProof").catch(()=>[]),
-        fetchSheet("Contacto").catch(()=>[])
-      ]);
-      const contacto = {};
-      contRows.forEach(r => { if(r.Campo) contacto[r.Campo] = r.Valor; });
-      DATA = {
-        propiedades: props.filter(p=>p.Titulo),
-        testimonios: tests.filter(t=>t.Testimonio),
-        contacto: Object.keys(contacto).length ? contacto : DEMO.contacto
-      };
-    } else {
-      // Fallback: solo CSV simple (propiedades)
-      const r = await fetch(baseUrl);
+  try {
+    const fetchCSV = async (url) => {
+      const r = await fetch(url);
+      if(!r.ok) throw new Error(`HTTP ${r.status} - ${url}`);
       const text = await r.text();
-      DATA = {
-        propiedades: Papa.parse(text,{header:true,skipEmptyLines:true}).data.filter(p=>p.Titulo),
-        testimonios: DEMO.testimonios,
-        contacto: DEMO.contacto
-      };
+      if(!text || text.trim().length < 5) throw new Error("Respuesta vacía");
+      return Papa.parse(text, {header:true, skipEmptyLines:true}).data;
+    };
+
+    const [props, contRows, tests] = await Promise.all([
+      fetchCSV(SHEET_PROPIEDADES_URL).catch(e => { console.warn("Propiedades:", e); return []; }),
+      fetchCSV(SHEET_CONTACTO_URL).catch(e => { console.warn("Contacto:", e); return []; }),
+      fetchCSV(SHEET_SOCIALPROOF_URL).catch(e => { console.warn("SocialProof:", e); return []; })
+    ]);
+
+    const contacto = {};
+    contRows.forEach(r => { if(r.Campo) contacto[r.Campo] = r.Valor; });
+
+    DATA = {
+      propiedades: props.filter(p => p.Titulo),
+      testimonios: tests.filter(t => t.Testimonio),
+      contacto: Object.keys(contacto).length ? contacto : DEMO.contacto
+    };
+
+    if(!DATA.propiedades.length){
+      console.warn("Sin propiedades del Sheet, usando demo.");
+      DATA.propiedades = DEMO.propiedades;
     }
-    if(!DATA.propiedades.length) DATA = DEMO;
-  }catch(e){
-    console.warn("No se pudo cargar el Sheet, usando demo.", e);
+    if(!DATA.testimonios.length) DATA.testimonios = DEMO.testimonios;
+    if(!Object.keys(DATA.contacto).length) DATA.contacto = DEMO.contacto;
+
+  } catch(e) {
+    console.warn("Error cargando Sheets, usando demo:", e);
     DATA = DEMO;
   }
 }
@@ -1005,14 +536,12 @@ function populateFilters(){
   fill($("#fTipo"), tipos);
   fill($("#fZona"), zonas);
   $("#statTotal").textContent = DATA.propiedades.length;
-  // Contadores de tabs
   const ct = (op)=>DATA.propiedades.filter(p=>!op || p.Operacion===op).length;
   $("#cAll").textContent = ct("");
   $("#cVenta").textContent = ct("Venta");
   $("#cAlquiler").textContent = ct("Alquiler");
   $("#cTemp").textContent = ct("Alquiler Temporario");
 }
-
 function renderGrid(){
   const grid = $("#grid");
   let list = DATA.propiedades.slice();
@@ -1064,17 +593,12 @@ function renderGrid(){
       </div>
     </article>`;
   }).join("");
-
-  // Click handlers
   $$(".card").forEach(c => c.addEventListener("click", () => openProp(c.dataset.id)));
-
-  // Animation on scroll
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
   }, {threshold: .1});
   $$(".card").forEach(c => io.observe(c));
 }
-
 function renderContact(){
   const c = DATA.contacto;
   const wa = (c.WhatsApp||"").replace(/\D/g,"");
@@ -1100,7 +624,6 @@ function openProp(id){
   const photos = photoList(p);
   const wa = (p.WhatsApp || DATA.contacto.WhatsApp || "").replace(/\D/g,"");
   const waLink = `https://wa.me/${wa}?text=${encodeURIComponent("Hola FFS! Me interesa la propiedad: "+p.Titulo)}`;
-
   $("#galleryMain").innerHTML = photos.map((src,i)=>
     `<div class="gallery-slide ${i===0?"active":""}"><img src="${src}" alt="${p.Titulo} ${i+1}"/></div>`
   ).join("");
@@ -1108,7 +631,6 @@ function openProp(id){
     `<div class="thumb ${i===0?"active":""}" data-i="${i}"><img src="${src}" alt=""/></div>`
   ).join("");
   $$(".thumb").forEach(t => t.addEventListener("click", ()=>goSlide(parseInt(t.dataset.i))));
-
   $("#modalBody").innerHTML = `
     <div class="modal-head">
       <div>
@@ -1143,7 +665,6 @@ function openProp(id){
   $("#modal").classList.add("open");
   document.body.style.overflow = "hidden";
 }
-
 function goSlide(i){
   const slides = $$(".gallery-slide");
   const thumbs = $$(".thumb");
@@ -1161,13 +682,8 @@ function closeModal(){
 
 /* ============ EVENTS ============ */
 function setupEvents(){
-  // Nav scroll
   const nav = $("#nav");
-  window.addEventListener("scroll", ()=>{
-    nav.classList.toggle("scrolled", window.scrollY > 30);
-  });
-
-  // Mobile menu toggle
+  window.addEventListener("scroll", ()=>{ nav.classList.toggle("scrolled", window.scrollY > 30); });
   const burger = $("#burger");
   const mobileMenu = $("#mobileMenu");
   const toggleMobile = () => {
@@ -1184,19 +700,13 @@ function setupEvents(){
   document.addEventListener("keydown", e => {
     if(e.key === "Escape" && mobileMenu.classList.contains("open")) toggleMobile();
   });
-
-  // Hero filter form
   $("#fOperacion").addEventListener("change",e=>activeFilter.op=e.target.value);
   $("#fTipo").addEventListener("change",e=>activeFilter.tipo=e.target.value);
   $("#fZona").addEventListener("change",e=>activeFilter.zona=e.target.value);
-
-  // Focus effect on search fields
   $$(".search-field select").forEach(s => {
     s.addEventListener("focus", () => s.closest(".search-field").classList.add("focused"));
     s.addEventListener("blur", () => s.closest(".search-field").classList.remove("focused"));
   });
-
-  // Quick tabs
   $$("#quickFilters .tab").forEach(p => p.addEventListener("click",()=>{
     $$("#quickFilters .tab").forEach(x=>x.classList.remove("active"));
     p.classList.add("active");
@@ -1204,15 +714,11 @@ function setupEvents(){
     $("#fOperacion").value = p.dataset.op;
     renderGrid();
   }));
-
-  // Text search
   let st;
   $("#textSearch").addEventListener("input", e => {
     clearTimeout(st);
     st = setTimeout(()=>{ activeFilter.text = e.target.value; renderGrid(); }, 200);
   });
-
-  // Modal close
   $("#modalClose").addEventListener("click", closeModal);
   $("#modal").addEventListener("click", e => { if(e.target.id==="modal") closeModal(); });
   $("#galPrev").addEventListener("click", ()=>goSlide(currentSlide-1));
@@ -1223,8 +729,6 @@ function setupEvents(){
     if(e.key==="ArrowLeft") goSlide(currentSlide-1);
     if(e.key==="ArrowRight") goSlide(currentSlide+1);
   });
-
-  // Contact form -> WhatsApp
   $("#contactForm").addEventListener("submit", e=>{
     e.preventDefault();
     const f = e.target;
@@ -1233,7 +737,6 @@ function setupEvents(){
     window.open(`https://wa.me/${wa}?text=${msg}`, "_blank");
   });
 }
-
 function filterAndScroll(){
   renderGrid();
   $("#propiedades").scrollIntoView({behavior:"smooth"});
