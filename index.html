@@ -507,7 +507,6 @@ async function loadData(){
         throw e;
       }
     };
-    };
 
     const [props, contRows, tests] = await Promise.all([
       fetchCSV(SHEET_PROPIEDADES_URL).catch(e => { console.warn("Propiedades:", e); return []; }),
