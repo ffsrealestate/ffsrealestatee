@@ -487,12 +487,21 @@ function tagList(p){
 /* ============ LOAD DATA ============ */
 async function loadData(){
   try {
-    const fetchCSV = async (url) => {
-      const r = await fetch(url);
-      if(!r.ok) throw new Error(`HTTP ${r.status} - ${url}`);
-      const text = await r.text();
-      if(!text || text.trim().length < 5) throw new Error("Respuesta vacía");
-      return Papa.parse(text, {header:true, skipEmptyLines:true}).data;
+ const fetchCSV = async (url) => {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 5000);
+      try {
+        const r = await fetch(url, {signal: controller.signal});
+        clearTimeout(timeout);
+        if(!r.ok) throw new Error(`HTTP ${r.status}`);
+        const text = await r.text();
+        if(!text || text.trim().length < 5) throw new Error("Respuesta vacía");
+        return Papa.parse(text, {header:true, skipEmptyLines:true}).data;
+      } catch(e) {
+        clearTimeout(timeout);
+        throw e;
+      }
+    };
     };
 
     const [props, contRows, tests] = await Promise.all([
