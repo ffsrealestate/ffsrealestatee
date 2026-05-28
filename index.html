@@ -477,7 +477,8 @@ function fmtPrice(p, moneda){
   return `${sym} ${n.toLocaleString("es-AR")}`;
 }
 function photoList(p){
-  return [p.Foto_Portada,p.Foto_1,p.Foto_2,p.Foto_3,p.Foto_4,p.Foto_5].filter(x=>x && String(x).trim());
+  return [p.Foto_Portada,p.Foto_1,p.Foto_2,p.Foto_3,p.Foto_4,p.Foto_5,p.Foto_6,p.Foto_7,p.Foto_8,p.Foto_9,p.Foto_10,p.Foto_11,p.Foto_12,p.Foto_13,p.Foto_14].filter(x=>x && String(x).trim());
+};
 }
 function tagList(p){
   return (p.Tags||"").split(",").map(s=>s.trim()).filter(Boolean);
