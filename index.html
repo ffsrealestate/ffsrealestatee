@@ -485,7 +485,6 @@ function photoList(p){
   }
   return fotos.filter(x=>x && String(x).trim());
 }
-}
 function tagList(p){
   return (p.Tags||"").split(",").map(s=>s.trim()).filter(Boolean);
 }
